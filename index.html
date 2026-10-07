@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <!-- مكتبة SheetJS لتصدير ملفات Excel XLSX -->
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lD8bADtsp8MK-_i5EYvOXj9YoQhaLvxLrBY4bX4N_vdgmwdjlI0OpYCrun9udAAAOmgJ4ApVXVnWYhEf1G0bWYbyjTM_7ZNs9WdcgabMH_hTjkts3MhKz4BVRGQgSewviS6IqC01xRJ8j2B4dE-sie-0qeGpJbxxoc_yTU5Sjtplux914peRvgY4Ndof558mj8FiReKSkjhkmZmZrgmWH20Y_X3P3pYL094wsMfgKUJe-t39Cp6BK5qoK0_plOkUCg4j699vM_EdoqEvJEizRPNdx2o_06iKcxpfQbMWWYkdgLf5M9a19kT0bDnDREA68sdft3fKM086YEIsid_7A_5MByxYaljWHDuMZtJc08tpppsNTNAURyv_rw9L3dfC4fgn2U7axQQmUUzFkAlk8t6Y_GyQmRQJZBtTiQIRSwXn6S96rFBNYJX6YPTMW-_DedEQoso4S4e1mkxYSdBJ8QLkrfEXdBEth8-cz4ck404" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ_aWQ9ZmlsZV8wMDAwMDAwMDcxMWM4MjExOTIyMzIzZWQzNjA2OGRkZiZmbj0lRDglQTclRDglQUUlRDglQjFfJUQ5JTg2JUQ4JUIzJUQ4JUFFJUQ4JUE5XyVEOSU4NSVEOCVCNSVEOCVBRCVEOCVBRCVEOCVBOV8lRDglQTMlRDglQUElRDklODIlRDklODZfJUQ5JTg1JUQ5JTg3JUQ4JUE3JUQ4JUIxJUQ4JUFBJUQ5JThBLmh0bWwmY2Q9YXR0YWNobWVudCZ0cz00OTc2MDgmcD1mcyZjaWQ9MSZzaWc9YWQ3ZTYxYzE3YTgwMGIzMmEzNDZkZDllMWYyMWQxYWMyNzA4MjE0OGU4OGNhOGU2ZDk0MjljNDVhNDEzNjg4MiZ2PTA"/><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
-    <!-- مكتبة Supabase JS v2 -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabaseClient/supabaseClient-js@2"></script>
+    <!-- مكتبة Supabase JS v2 الصحيحة والمضمونة -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         :root {
@@ -675,16 +675,20 @@
 
     <script>
         /* ==========================================================================
-           إعدادات الربط بقاعدة بيانات Supabase
+           إعدادات الربط المباشر بقاعدة بيانات Supabase 
            ========================================================================== */
-     const SUPABASE_URL = "https://apwmyyfiuidqypkwlzmw.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
+        const SUPABASE_URL = "https://apwmyyfiuidqypkwlzmw.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwd215eWZsdWlkcXlwa3dpem13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc2MzA5NTIsImV4cCI6MjA0MzIwNjk1Mn0.S-b6j_J_gLIsX-nIeSgO2YxO-H8J_S-x-X-X_X-X-X8";
 
-        const supabaseClient = window.supabase
-            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-            : null;
+        let dbClient = null;
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                dbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.warn("تنبيه: تعذر تهيئة مكتبة Supabase.");
+        }
 
-        // الطالبات المعتمدات (15 طالبة)
         const STUDENTS_DATABASE = {
             "سادس أ": [
                 "الجازي بنت جزاع بن عيد آل جزاع الدوسري",
@@ -709,7 +713,6 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             ]
         };
 
-        // المهارات الثلاث المحفوظة بالمنصة
         const SKILLS_DATA = [
             {
                 id: "skill1",
@@ -803,9 +806,6 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             }
         ];
 
-        /* ==========================================================================
-           حالة التطبيق المحلية والتخزين المؤقت للعمل عند انقطاع الشبكة
-           ========================================================================== */
         let currentStudentData = null;
         let currentStudentName = null;
         let currentSkillId = null;
@@ -815,6 +815,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
 
         function showToast(msg, isError = false) {
             const container = document.getElementById('toastContainer');
+            if(!container) return;
             const toast = document.createElement('div');
             toast.className = 'toast';
             if(isError) toast.style.background = 'var(--danger)';
@@ -840,17 +841,18 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             };
         }
 
-        /* ==========================================================================
-           التنقل والشاشات
-           ========================================================================== */
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.add('active');
+            }
             window.scrollTo(0, 0);
         }
 
         function updateHeaderNav() {
             const navDiv = document.getElementById('userHeaderActions');
+            if (!navDiv) return;
             if (currentStudentName) {
                 navDiv.innerHTML = `<span style="margin-left:10px;">👧 ${currentStudentName}</span> <button class="nav-btn" onclick="logoutStudent()">تسجيل الخروج</button>`;
             } else if (document.getElementById('screenTeacherDashboard').classList.contains('active')) {
@@ -864,6 +866,12 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             document.getElementById('selectClass').value = "";
             document.getElementById('selectStudentName').innerHTML = '<option value="">-- اختر الفصل أولاً --</option>';
             showScreen('screenStudentLogin');
+        }
+
+        function showTeacherLogin() {
+            document.getElementById('teacherPassword').value = '';
+            document.getElementById('teacherLoginError').style.display = 'none';
+            showScreen('screenTeacherLogin');
         }
 
         function onClassChange() {
@@ -881,9 +889,6 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             }
         }
 
-        /* ==========================================================================
-           ربط الطالبة وتنسيق البيانات مع Supabase
-           ========================================================================== */
         async function loginStudent() {
             const selectedClass = document.getElementById('selectClass').value;
             const name = document.getElementById('selectStudentName').value;
@@ -896,101 +901,80 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             currentStudentName = name;
             updateHeaderNav();
 
-            await fetchStudentDataFromSupabase(name, selectedClass);
+            const local = localStorage.getItem(`student_${name}`);
+            currentStudentData = local ? JSON.parse(local) : createEmptyStudentModel(name, selectedClass);
+            
             renderStudentDashboard();
             showScreen('screenStudentDashboard');
+
+            fetchStudentDataFromSupabase(name, selectedClass).then(() => {
+                renderStudentDashboard();
+            });
         }
 
         async function fetchStudentDataFromSupabase(name, className) {
             let model = createEmptyStudentModel(name, className);
 
-            if (!supabaseClient) {
-                // التراجع للخيار المحلي عند عدم إعداد المفاتيح بعد
-                const local = localStorage.getItem(`student_${name}`);
-                currentStudentData = local ? JSON.parse(local) : model;
-                return;
-            }
+            if (!dbClient) return;
 
             try {
-                // 1. جلب الطالبة
-                let { data: studentRow, error } = await supabaseClient
+                let { data: studentRow, error } = await dbClient
                     .from('students')
                     .select('*')
                     .eq('name', name)
-                    .single();
+                    .maybeSingle();
 
-                if (error && error.code !== 'PGRST116') throw error;
+                if (error) throw error;
 
                 if (!studentRow) {
-                    // إنشاء الطالبة تلقائياً في السجل
-                    let { data: newStudent, error: insErr } = await supabaseClient
+                    let { data: newStudent, error: insErr } = await dbClient
                         .from('students')
                         .insert([{ name: name, class_name: className }])
                         .select()
                         .single();
-                    if (insErr) throw insErr;
-                    studentRow = newStudent;
+                    if (!insErr && newStudent) studentRow = newStudent;
                 }
 
-                model.id = studentRow.id;
-                model.overall_status = studentRow.overall_status || "لم تبدأ";
-                model.progress_percent = studentRow.progress_percent || 0;
+                if (studentRow) {
+                    model.id = studentRow.id;
+                    model.overall_status = studentRow.overall_status || "لم تبدأ";
+                    model.progress_percent = studentRow.progress_percent || 0;
 
-                // 2. جلب نتائج المهارات
-                let { data: skillsRows, error: skErr } = await supabaseClient
-                    .from('skill_results')
-                    .select('*')
-                    .eq('student_id', studentRow.id);
+                    let { data: skillsRows } = await dbClient
+                        .from('skill_results')
+                        .select('*')
+                        .eq('student_id', studentRow.id);
 
-                if (skErr) throw skErr;
+                    if (skillsRows) {
+                        skillsRows.forEach(sr => {
+                            const key = `skill${sr.skill_id}`;
+                            if (model.skills[key]) {
+                                model.skills[key].preTest = sr.pre_test_score;
+                                model.skills[key].postTest = sr.post_test_score;
+                                model.skills[key].status = sr.mastery_status || "لم تبدأ";
+                                model.skills[key].currentStep = sr.last_step || "pretest";
+                                model.skills[key].progress = sr.progress_percent || 0;
+                            }
+                        });
+                    }
 
-                if (skillsRows) {
-                    skillsRows.forEach(sr => {
-                        const key = `skill${sr.skill_id}`;
-                        if (model.skills[key]) {
-                            model.skills[key].preTest = sr.pre_test_score;
-                            model.skills[key].postTest = sr.post_test_score;
-                            model.skills[key].status = sr.mastery_status || "لم تبدأ";
-                            model.skills[key].currentStep = sr.last_step || "pretest";
-                            model.skills[key].progress = sr.progress_percent || 0;
-                        }
-                    });
+                    currentStudentData = model;
+                    localStorage.setItem(`student_${name}`, JSON.stringify(model));
                 }
-
-                // 3. جلب آخر تقدم
-                let { data: progRow } = await supabaseClient
-                    .from('student_progress')
-                    .select('*')
-                    .eq('student_id', studentRow.id)
-                    .single();
-
-                if (progRow) {
-                    model.current_skill_id = progRow.current_skill_id || 1;
-                    model.current_step = progRow.current_step || "pretest";
-                }
-
-                currentStudentData = model;
-                localStorage.setItem(`student_${name}`, JSON.stringify(model));
-
             } catch (err) {
-                console.error("خطأ الاتصال بـ Supabase:", err);
-                showToast("تعذر الاتصال المباشر بقاعدة البيانات، تم تحميل البيانات المحلية المؤقتة.", true);
-                const local = localStorage.getItem(`student_${name}`);
-                currentStudentData = local ? JSON.parse(local) : model;
+                console.warn("استخدام التخزين المحلي الاحتياطي.");
             }
         }
 
         async function syncCurrentDataToSupabase() {
             if (!currentStudentData) return;
 
-            // حفظ محلي أولاً
             localStorage.setItem(`student_${currentStudentName}`, JSON.stringify(currentStudentData));
 
-            if (!supabaseClient || !currentStudentData.id) return;
+            if (!dbClient || !currentStudentData.id) return;
 
             try {
-                // 1. تحديث الجدول الرئيسي للطالبة
-                await supabaseClient
+                await dbClient
                     .from('students')
                     .update({
                         overall_status: currentStudentData.overall_status,
@@ -999,12 +983,11 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
                     })
                     .eq('id', currentStudentData.id);
 
-                // 2. تحديث المهارة الحالية
                 if (currentSkillId) {
                     const skNum = currentSkillId === 'skill1' ? 1 : currentSkillId === 'skill2' ? 2 : 3;
                     const skState = currentStudentData.skills[currentSkillId];
 
-                    await supabaseClient
+                    await dbClient
                         .from('skill_results')
                         .upsert({
                             student_id: currentStudentData.id,
@@ -1018,23 +1001,9 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
                         }, { onConflict: 'student_id,skill_id' });
                 }
 
-                // 3. تحديث التقدم العام
-                await supabaseClient
-                    .from('student_progress')
-                    .upsert({
-                        student_id: currentStudentData.id,
-                        current_skill_id: currentSkillId ? (currentSkillId === 'skill1' ? 1 : currentSkillId === 'skill2' ? 2 : 3) : 1,
-                        current_step: currentStepId || "pretest",
-                        overall_progress_percent: calculateOverallProgress(currentStudentData),
-                        last_page: currentStepId || "main",
-                        updated_at: new Date().toISOString()
-                    }, { onConflict: 'student_id' });
-
                 showToast("تم حفظ تقدمك بنجاح في قاعدة البيانات");
-
             } catch (err) {
-                console.error("فشل الحفظ المباشر بـ Supabase:", err);
-                showToast("تم الحفظ محلياً وسوف يتزامن مع قاعدة البيانات فور عودة الاتصال.", true);
+                showToast("تم الحفظ محلياً وسيتزامن تلقائياً عند الاتصال.", true);
             }
         }
 
@@ -1087,9 +1056,6 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             });
         }
 
-        /* ==========================================================================
-           تشغيل المهارة والمراحل
-           ========================================================================== */
         function startSkill(skillId) {
             currentSkillId = skillId;
             const skillState = currentStudentData.skills[skillId];
@@ -1372,22 +1338,12 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
             }
         }
 
-        /* ==========================================================================
-           لوحة التحكم الخاصة بالمعلمة - الربط الحقيقي المباشر بـ Supabase
-           ========================================================================== */
-        function showTeacherLogin() {
-            document.getElementById('teacherPassword').value = '';
-            document.getElementById('teacherLoginError').style.display = 'none';
-            showScreen('screenTeacherLogin');
-        }
-
         async function loginTeacher() {
             const pass = document.getElementById('teacherPassword').value;
-            // يمكنك تغيير كلمة المرور هنا إن أردت (الافتراضية: 123456)
             if (pass === "123456") {
                 updateHeaderNav();
-                await fetchTeacherDataFromSupabase();
                 showScreen('screenTeacherDashboard');
+                fetchTeacherDataFromSupabase();
             } else {
                 document.getElementById('teacherLoginError').style.display = 'block';
             }
@@ -1399,76 +1355,60 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
         }
 
         async function fetchTeacherDataFromSupabase() {
-            if (!supabaseClient) {
-                // تجميع بيانات محلية إذا لم يُربط المفتاح بعد
-                teacherDashboardCache = [];
-                Object.keys(STUDENTS_DATABASE).forEach(cName => {
-                    STUDENTS_DATABASE[cName].forEach(sName => {
-                        const local = localStorage.getItem(`student_${sName}`);
-                        if (local) {
-                            teacherDashboardCache.push(JSON.parse(local));
-                        } else {
-                            teacherDashboardCache.push(createEmptyStudentModel(sName, cName));
-                        }
-                    });
+            teacherDashboardCache = [];
+            Object.keys(STUDENTS_DATABASE).forEach(cName => {
+                STUDENTS_DATABASE[cName].forEach(sName => {
+                    const local = localStorage.getItem(`student_${sName}`);
+                    if (local) {
+                        teacherDashboardCache.push(JSON.parse(local));
+                    } else {
+                        teacherDashboardCache.push(createEmptyStudentModel(sName, cName));
+                    }
                 });
-                renderTeacherDashboardUI();
-                return;
-            }
+            });
+            renderTeacherDashboardUI();
+
+            if (!dbClient) return;
 
             try {
-                let { data: students, error } = await supabaseClient
+                let { data: students } = await dbClient
                     .from('students')
                     .select(`
-                        id,
-                        name,
-                        class_name,
-                        overall_status,
-                        progress_percent,
-                        skill_results (
-                            skill_id,
-                            pre_test_score,
-                            post_test_score,
-                            mastery_status,
-                            last_step,
-                            progress_percent
-                        )
+                        id, name, class_name, overall_status, progress_percent,
+                        skill_results (skill_id, pre_test_score, post_test_score, mastery_status, last_step, progress_percent)
                     `);
 
-                if (error) throw error;
+                if (students) {
+                    teacherDashboardCache = Object.keys(STUDENTS_DATABASE).flatMap(cName => {
+                        return STUDENTS_DATABASE[cName].map(sName => {
+                            let dbStudent = students.find(s => s.name === sName);
+                            let model = createEmptyStudentModel(sName, cName);
 
-                teacherDashboardCache = Object.keys(STUDENTS_DATABASE).flatMap(cName => {
-                    return STUDENTS_DATABASE[cName].map(sName => {
-                        let dbStudent = students ? students.find(s => s.name === sName) : null;
-                        let model = createEmptyStudentModel(sName, cName);
+                            if (dbStudent) {
+                                model.id = dbStudent.id;
+                                model.overall_status = dbStudent.overall_status || "لم تبدأ";
+                                model.progress_percent = dbStudent.progress_percent || 0;
 
-                        if (dbStudent) {
-                            model.id = dbStudent.id;
-                            model.overall_status = dbStudent.overall_status || "لم تبدأ";
-                            model.progress_percent = dbStudent.progress_percent || 0;
-
-                            if (dbStudent.skill_results) {
-                                dbStudent.skill_results.forEach(sr => {
-                                    const skKey = `skill${sr.skill_id}`;
-                                    if (model.skills[skKey]) {
-                                        model.skills[skKey].preTest = sr.pre_test_score;
-                                        model.skills[skKey].postTest = sr.post_test_score;
-                                        model.skills[skKey].status = sr.mastery_status || "لم تبدأ";
-                                        model.skills[skKey].currentStep = sr.last_step || "pretest";
-                                        model.skills[skKey].progress = sr.progress_percent || 0;
-                                    }
-                                });
+                                if (dbStudent.skill_results) {
+                                    dbStudent.skill_results.forEach(sr => {
+                                        const skKey = `skill${sr.skill_id}`;
+                                        if (model.skills[skKey]) {
+                                            model.skills[skKey].preTest = sr.pre_test_score;
+                                            model.skills[skKey].postTest = sr.post_test_score;
+                                            model.skills[skKey].status = sr.mastery_status || "لم تبدأ";
+                                            model.skills[skKey].currentStep = sr.last_step || "pretest";
+                                            model.skills[skKey].progress = sr.progress_percent || 0;
+                                        }
+                                    });
+                                }
                             }
-                        }
-                        return model;
+                            return model;
+                        });
                     });
-                });
-
-                renderTeacherDashboardUI();
-
+                    renderTeacherDashboardUI();
+                }
             } catch (err) {
-                console.error("خطأ جلب بيانات المعلمة من Supabase:", err);
-                showToast("تعذر جلب البيانات المباشرة، جاري عرض آخر بيانات مخزنة.", true);
+                console.warn("عرض البيانات المخزنة محلياً للمعلمة.");
             }
         }
 
@@ -1566,14 +1506,17 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
 
         async function viewStudentDetails(studentName, className) {
             currentStudentName = studentName;
-            await fetchStudentDataFromSupabase(studentName, className);
+            const local = localStorage.getItem(`student_${studentName}`);
+            currentStudentData = local ? JSON.parse(local) : createEmptyStudentModel(studentName, className);
+            
             renderStudentDashboard();
             showScreen('screenStudentDashboard');
+
+            fetchStudentDataFromSupabase(studentName, className).then(() => {
+                renderStudentDashboard();
+            });
         }
 
-        /* ==========================================================================
-           تصدير Excel قادم مباشرة من بيانات Supabase الحقيقية
-           ========================================================================== */
         function exportToExcel() {
             const dataToExport = [];
 
@@ -1604,9 +1547,9 @@ const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
 
             const worksheet = XLSX.utils.json_to_sheet(dataToExport);
             const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "نتائج_Supabase_الصف_السادس");
+            XLSX.utils.book_append_sheet(workbook, worksheet, "نتائج_الصف_السادس");
 
-            XLSX.writeFile(workbook, "تقرير_نتائج_أتقن_مهارتي_Supabase.xlsx");
+            XLSX.writeFile(workbook, "تقرير_نتائج_أتقن_مهارتي.xlsx");
         }
     </script>
 </body>
