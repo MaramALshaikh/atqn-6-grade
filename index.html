@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أتقن مهارتي - الصف السادس | الابتدائية 211</title>
+    <!-- خط تجوال العربي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة SheetJS لتصدير ملفات Excel XLSX -->
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lD8bADtsp8MK-_i5EYvOXj9YoQhaLvxLrBY4bX4N_vdgmwdjlI0OpYCrun9udAAAOmgJ4ApVXVnWYhEf1G0bWYbyjTM_7ZNs9WdcgabMH_hTjkts3MhKz4BVRGQgSewviS6IqC01xRJ8j2B4dE-sie-0qeGpJbxxoc_yTU5Sjtplux914peRvgY4Ndof558mj8FiReKSkjhkmZmZrgmWH20Y_X3P3pYL094wsMfgKUJe-t39Cp6BK5qoK0_plOkUCg4j699vM_EdoqEvJEizRPNdx2o_06iKcxpfQbMWWYkdgLf5M9a19kT0bDnDREA68sdft3fKM086YEIsid_7A_5MByxYaljWHDuMZtJc08tpppsNTNAURyv_rw9L3dfC4fgn2U7axQQmUUzFkAlk8t6Y_GyQmRQJZBtTiQIRSwXn6S96rFBNYJX6YPTMW-_DedEQoso4S4e1mkxYSdBJ8QLkrfEXdBEth8-cz4ck404" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ_aWQ9ZmlsZV8wMDAwMDAwMDcxMWM4MjExOTIyMzIzZWQzNjA2OGRkZiZmbj0lRDglQTclRDglQUUlRDglQjFfJUQ5JTg2JUQ4JUIzJUQ4JUFFJUQ4JUE5XyVEOSU4NSVEOCVCNSVEOCVBRCVEOCVBRCVEOCVBOV8lRDglQTMlRDglQUElRDklODIlRDklODZfJUQ5JTg1JUQ5JTg3JUQ4JUE3JUQ4JUIxJUQ4JUFBJUQ5JThBLmh0bWwmY2Q9YXR0YWNobWVudCZ0cz00OTc2MDgmcD1mcyZjaWQ9MSZzaWc9YWQ3ZTYxYzE3YTgwMGIzMmEzNDZkZDllMWYyMWQxYWMyNzA4MjE0OGU4OGNhOGU2ZDk0MjljNDVhNDEzNjg4MiZ2PTA"/><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- مكتبة Supabase JS v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabaseClient/supabaseClient-js@2"></script>
+
+    <style>
+        :root {
+            --primary-1: #382972;
+            --primary-2: #7030A0;
+            --secondary-1: #208CAA;
+            --secondary-2: #003944;
+            --accent-1: #2BADDF;
+            --accent-2: #0DCFDA;
+            --soft-purple: #7358A5;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+            --text-dark: #2C3E50;
+            --text-muted: #6C757D;
+            --border-color: #E2E8F0;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow: 0 10px 25px -5px rgba(56, 41, 114, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
+            color: var(--white);
+            padding: 20px 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .header-title p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .school-info {
+            text-align: left;
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 30px auto;
+            flex: 1;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            background: var(--secondary-1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--secondary-2);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-1);
+            border: 2px solid var(--primary-1);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-1);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .role-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .role-card {
+            text-align: center;
+            padding: 40px 20px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .role-card:hover {
+            border-color: var(--accent-1);
+            transform: translateY(-5px);
+        }
+
+        .role-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(43, 173, 223, 0.1);
+            color: var(--accent-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 15px;
+        }
+
+        .select-group {
+            margin-bottom: 20px;
+        }
+
+        .select-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--primary-1);
+        }
+
+        select, input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--accent-1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            border-left: 6px solid var(--accent-1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .skill-status {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .status-not-started { background: #e9ecef; color: #495057; }
+        .status-in-progress { background: #fff3cd; color: #856404; }
+        .status-completed { background: #d1ecf1; color: #0c5460; }
+        .status-mastered { background: #d4edda; color: #155724; }
+        .status-needs-remedy { background: #f8d7da; color: #721c24; }
+
+        .skill-steps-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .step-tab {
+            padding: 10px 18px;
+            background: #EAEAEA;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: bold;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .step-tab.active {
+            background: var(--primary-1);
+            color: white;
+        }
+
+        .step-tab.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            margin: 15px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .quiz-option {
+            background: #F1F5F9;
+            border: 2px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: #E2E8F0;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--secondary-1);
+            background: rgba(32, 140, 170, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 18px;
+            border-radius: var(--radius-md);
+            border-right: 5px solid var(--primary-2);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-1);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-bar > * {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.88rem;
+        }
+
+        th {
+            background: var(--primary-1);
+            color: white;
+            font-weight: 700;
+        }
+
+        tr:hover {
+            background: #F8FAFC;
+        }
+
+        .skill-img-placeholder {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin: 15px 0;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .alert {
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .alert-success { background: #d4edda; color: #155724; }
+        .alert-info { background: #d1ecf1; color: #0c5460; }
+        .alert-warning { background: #fff3cd; color: #856404; }
+
+        #toastContainer {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+        .toast {
+            background: var(--primary-1);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-top: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .school-info {
+                text-align: center;
+            }
+            .container {
+                width: 95%;
+                margin: 15px auto;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="header-title">
+                <h1>منصة «أتقن مهارتي»</h1>
+                <p>المنصة التعليمية العلاجية - الصف السادس الابتدائي</p>
+            </div>
+            <div class="school-info">
+                <div><strong>إعداد:</strong> أ. مرام الشيخ</div>
+                <div><strong>المدرسة:</strong> الابتدائية الحادية عشرة بعد المئتين (211)</div>
+                <div><strong>المديرة:</strong> ابتسام باقلب</div>
+            </div>
+            <div id="userHeaderActions"></div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. شاشة اختيار بوابة الدخول -->
+        <div id="screenRole" class="screen active">
+            <div class="card" style="text-align: center;">
+                <h2 style="color: var(--primary-1); margin-bottom: 10px;">أهلاً بكم في منصة أتقن مهارتي</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">اختر بوابة الدخول للمتابعة</p>
+
+                <div class="role-selection">
+                    <div class="role-card card" onclick="showStudentLogin()">
+                        <div class="role-icon">👧</div>
+                        <h3 style="color: var(--primary-1);">بوابة الطالبة</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">الدخول للمسار التعليمي (سادس أ / سادس ب / سادس ج)</p>
+                    </div>
+
+                    <div class="role-card card" onclick="showTeacherLogin()">
+                        <div class="role-icon">👩‍🏫</div>
+                        <h3 style="color: var(--primary-2);">بوابة المعلمة</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">متابعة تقارير الطالبات المباشرة وتصدير نتائج Supabase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. شاشة دخول الطالبة -->
+        <div id="screenStudentLogin" class="screen">
+            <div class="card" style="max-width: 500px; margin: 0 auto;">
+                <h2 style="color: var(--primary-1); margin-bottom: 20px; text-align: center;">تسجيل دخول الطالبة</h2>
+                
+                <div class="select-group">
+                    <label>اختر الفصل:</label>
+                    <select id="selectClass" onchange="onClassChange()">
+                        <option value="">-- اختر الفصل --</option>
+                        <option value="سادس أ">سادس أ</option>
+                        <option value="سادس ب">سادس ب</option>
+                        <option value="سادس ج">سادس ج</option>
+                    </select>
+                </div>
+
+                <div class="select-group">
+                    <label>اختر اسم الطالبة:</label>
+                    <select id="selectStudentName">
+                        <option value="">-- اختر الفصل أولاً --</option>
+                    </select>
+                </div>
+
+                <button class="btn" style="width: 100%;" onclick="loginStudent()">دخول إلى المسار التعليمي</button>
+                <button class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="showScreen('screenRole')">رجوع</button>
+            </div>
+        </div>
+
+        <!-- 3. شاشة دخول المعلمة -->
+        <div id="screenTeacherLogin" class="screen">
+            <div class="card" style="max-width: 450px; margin: 0 auto;">
+                <h2 style="color: var(--primary-2); margin-bottom: 20px; text-align: center;">تسجيل دخول المعلمة</h2>
+                
+                <div class="select-group">
+                    <label>كلمة المرور:</label>
+                    <input type="password" id="teacherPassword" placeholder="أدخل كلمة المرور (123456)">
+                </div>
+
+                <div id="teacherLoginError" class="alert alert-warning" style="display: none; font-size: 0.85rem;">
+                    كلمة المرور غير صحيحة!
+                </div>
+
+                <button class="btn" style="width: 100%; background: var(--primary-2);" onclick="loginTeacher()">تسجيل الدخول</button>
+                <button class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="showScreen('screenRole')">رجوع</button>
+            </div>
+        </div>
+
+        <!-- 4. مسار الطالبة (قائمة المهارات) -->
+        <div id="screenStudentDashboard" class="screen">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                    <div>
+                        <h2 style="color: var(--primary-1);" id="studentWelcomeTitle">مرحباً بالطالبة</h2>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;" id="studentWelcomeSub">الفصل | استكملي مسار المهارات الثلاث</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="logoutStudent()">تسجيل الخروج</button>
+                </div>
+
+                <div id="skillsList" class="skills-grid"></div>
+            </div>
+        </div>
+
+        <!-- 5. مشغل مراحل المهارة -->
+        <div id="screenSkillRunner" class="screen">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="color: var(--primary-1);" id="runnerSkillTitle">عنوان المهارة</h3>
+                    <button class="btn btn-outline btn-sm" onclick="exitSkillRunner()">العودة للمهارات</button>
+                </div>
+
+                <div class="skill-steps-nav" id="stepsNav">
+                    <div class="step-tab" onclick="goToStep('pretest')">الاختبار القبلي</div>
+                    <div class="step-tab" onclick="goToStep('learn')">أتعلم</div>
+                    <div class="step-tab" onclick="goToStep('watch')">أشاهد</div>
+                    <div class="step-tab" onclick="goToStep('try')">أجرب</div>
+                    <div class="step-tab" onclick="goToStep('apply')">أطبق</div>
+                    <div class="step-tab" onclick="goToStep('challenge')">أتحدى تفكيري</div>
+                    <div class="step-tab" onclick="goToStep('posttest')">أتحقق من إتقاني</div>
+                    <div class="step-tab" onclick="goToStep('result')">النتيجة</div>
+                </div>
+
+                <div id="stepContent" style="margin-top: 20px;"></div>
+            </div>
+        </div>
+
+        <!-- 6. لوحة المعلمة Dashboard -->
+        <div id="screenTeacherDashboard" class="screen">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                    <h2 style="color: var(--primary-2);">لوحة المعلمة (Supabase Live Dashboard)</h2>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-sm" style="background: var(--success);" onclick="exportToExcel()">تصدير Excel 📊</button>
+                        <button class="btn btn-outline btn-sm" onclick="logoutTeacher()">خروج</button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>إجمالي الطالبات</h4>
+                        <div class="value" id="statTotal">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--soft-purple);">
+                        <h4>سادس أ</h4>
+                        <div class="value" id="statClassA">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--secondary-1);">
+                        <h4>سادس ب</h4>
+                        <div class="value" id="statClassB">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--accent-1);">
+                        <h4>سادس ج</h4>
+                        <div class="value" id="statClassC">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: #6C757D;">
+                        <h4>لم تبدأ</h4>
+                        <div class="value" id="statNotStarted">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--warning);">
+                        <h4>قيد التدريب</h4>
+                        <div class="value" id="statInProgress">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--secondary-1);">
+                        <h4>مكتملة</h4>
+                        <div class="value" id="statCompleted">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--success);">
+                        <h4>متقنة</h4>
+                        <div class="value" id="statMastered">0</div>
+                    </div>
+                    <div class="stat-card" style="border-color: var(--danger);">
+                        <h4>تحتاج تدريب إضافي</h4>
+                        <div class="value" id="statRemedy">0</div>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <input type="text" id="teacherSearch" placeholder="بحث باسم الطالبة..." oninput="renderTeacherTable()">
+                    <select id="teacherClassFilter" onchange="renderTeacherTable()">
+                        <option value="">جميع الفصول</option>
+                        <option value="سادس أ">سادس أ</option>
+                        <option value="سادس ب">سادس ب</option>
+                        <option value="سادس ج">سادس ج</option>
+                    </select>
+                    <select id="teacherStatusFilter" onchange="renderTeacherTable()">
+                        <option value="">جميع الحالات</option>
+                        <option value="لم تبدأ">لم تبدأ</option>
+                        <option value="قيد التدريب">قيد التدريب</option>
+                        <option value="مكتملة">مكتملة</option>
+                        <option value="متقنة">متقنة</option>
+                        <option value="تحتاج تدريبًا إضافيًا">تحتاج تدريبًا إضافيًا</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الطالبة</th>
+                                <th>الفصل</th>
+                                <th>التقدم</th>
+                                <th>الأشكال المسطحة والمجسمة</th>
+                                <th>حقوق الملكية الفكرية</th>
+                                <th>حفظ الملفات</th>
+                                <th>الحالة العامة</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacherTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="toastContainer"></div>
+
+    <script>
+        /* ==========================================================================
+           إعدادات الربط بقاعدة بيانات Supabase
+           ========================================================================== */
+     const SUPABASE_URL = "https://apwmyyfiuidqypkwlzmw.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_5fBFzJTh40SHtbb6GS2IeA_uMah2sFP";
+
+        const supabaseClient = window.supabase
+            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+            : null;
+
+        // الطالبات المعتمدات (15 طالبة)
+        const STUDENTS_DATABASE = {
+            "سادس أ": [
+                "الجازي بنت جزاع بن عيد آل جزاع الدوسري",
+                "توق بنت مفلح بن حسين السبيعي",
+                "ميرال عمر عياش احمد"
+            ],
+            "سادس ب": [
+                "تالين بنت زياد بن ناجع الاعجم",
+                "جود بنت بدر بن شايع ال ناجع القحطاني",
+                "جود بنت مسعود بن ذيب المريتع القحطاني",
+                "غلاء بنت عبيد بن ضيف الله المظيبري"
+            ],
+            "سادس ج": [
+                "تالين بنت متلع ابن سعد الفهري القحطاني",
+                "شوق بنت محمد بن داوود مبارك",
+                "شيماء بنت تركي بن عبد الرحمن الخريف",
+                "غصون بنت خالد بن عمر بافيل",
+                "فاطمة بنت أحمد بن علي مدخلي",
+                "لمار مازن محمد باطرفي",
+                "ميرال بنت خالد احمد اسماعيل مجرشي",
+                "هديل بنت جبران بن حسن الفيفي"
+            ]
+        };
+
+        // المهارات الثلاث المحفوظة بالمنصة
+        const SKILLS_DATA = [
+            {
+                id: "skill1",
+                numId: 1,
+                title: "1. التمييز بين الأشكال المسطحة والمجسمة",
+                youtubeUrl: "https://www.youtube.com/embed/N1oOSePx2uw",
+                learnText: "الأشكال المسطحة ثنائية الأبعاد (2D) لها طول وعرض فقط مثل المربع والشكل الدائري والمثلث. بينما المجسمات ثلاثية الأبعاد (3D) تشغل مكاناً في الفراغ ولها طول وعرض وارتفاع مثل المكعب، الكرة، والأسطوانة.",
+                learnImg: "", 
+                applyTask: "ابحثي في الغرفة حولك وعيني مجسماً واحداً وشكلاً مسطحاً واحداً، ثم قارني بينهما.",
+                challengeQuestion: "إذا قمتِ بطي ورقة مربعة مسطحة على شكل صندوق مفتوح، هل تحولت من شكل مسطح إلى مجسم؟ ولماذا؟",
+                challengeOptions: [
+                    "لا، تظل شكلاً مسطحاً لأنها مصنعة من الورق.",
+                    "نعم، لأنها أصبحت تشغل حيزاً في الفراغ ولها طول وعرض وارتفاع.",
+                    "تتحول إلى دائرة فقط."
+                ],
+                challengeCorrect: 1,
+                preTest: [
+                    { q: "الشكل ثنائي الأبعاد يُسمى:", options: ["شكلاً مسطحاً", "مجسماً", "كرة"], correct: 0 },
+                    { q: "المكعب والكرة يعتبران من:", options: ["الأشكال المسطحة", "المجسمات ثلاثية الأبعاد", "الخطوط"], correct: 1 }
+                ],
+                postTest: [
+                    { q: "أي مما يلي يعتبر شكلاً مسطحاً؟", options: ["الأسطوانة", "المثلث", "المكعب"], correct: 1 },
+                    { q: "المجسم يتميز بأنه يحتوي على:", options: ["طول وعرض فقط", "طول وعرض وارتفاع (حجم)", "ارتفاع فقط"], correct: 1 }
+                ],
+                tryActivities: {
+                    type: "mcq",
+                    question: "صنفي هذا العنصر: (شاشة التلفاز من الأمام كسطح رسم) تعتبر:",
+                    options: ["شكلاً مسطحاً ثنائي الأبعاد", "مجسماً ثلاثي الأبعاد"],
+                    correct: 0
+                }
+            },
+            {
+                id: "skill2",
+                numId: 2,
+                title: "2. حقوق الملكية الفكرية",
+                youtubeUrl: "https://www.youtube.com/embed/ChAxtg3aUZw",
+                learnText: "حقوق الملكية الفكرية تحمي أفكار وإبداعات المبتكرين والمؤلفين. يمنع القانون نسخ أو إعادة نشر أعمال الآخرين دون الحصول على إذن أو ذكر المصدر بشكل قانوني.",
+                learnImg: "", 
+                applyTask: "افتحي جهازك ونسخي نصاً أو صورة لاختراع مع ذكر اسم الكاتب أو المصدر الأصلي بشكل صحيح وموثق.",
+                challengeQuestion: "قامت طالبة بنسخ مشروع كامل من الإنترنت ونسبته لنفسها دون إذن صاحب العمل. ما الوصف القانوني والأخلاقي لهذا التصرف؟",
+                challengeOptions: [
+                    "تصرف ذكي ومقبول للحصول على درجات.",
+                    "انتهاك لحقوق الملكية الفكرية وسرقة علمية غير جائزة.",
+                    "تصرف لا يخالف القوانين لأن النت مفتوح للجميع."
+                ],
+                challengeCorrect: 1,
+                preTest: [
+                    { q: "حقوق الملكية الفكرية تهدف لـ:", options: ["حماية إبداعات وحقوق المؤلفين", "منع استخدام الإنترنت", "حذف الصور"], correct: 0 },
+                    { q: "نسخ أعمال الآخرين ونسبتها لنفسك يعتبر تصرفاً صحيحاً.", options: ["صح", "خطأ"], correct: 1 }
+                ],
+                postTest: [
+                    { q: "عند استخدام صورة أو نص من الإنترنت في بحثك يجب عليك:", options: ["تغيير لونها فقط", "ذكر المصدر واستئذان المالك", "إخفاء اسم الكاتب"], correct: 1 },
+                    { q: "الرمز © يشير عادة إلى حقوق النشر والطباعة المحفوظة.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                tryActivities: {
+                    type: "mcq",
+                    question: "حدد الإجراء الصحيح: إذا أردتِ استخدام مقطع صوتی صممه شخص آخر في مشروعك المدرسي:",
+                    options: ["تنسبيه لنفسك مباشرة", "تطلبين الإذن أو تذكرين اسمه كمبدع للصوت"],
+                    correct: 1
+                }
+            },
+            {
+                id: "skill3",
+                numId: 3,
+                title: "3. حفظ الملفات",
+                youtubeUrl: "https://www.youtube.com/embed/ChAxtg3aUZw",
+                learnText: "حفظ الملفات من أهم خطوات المهارات الرقمية لمنع فقدان البيانات. نستخدم الأمر (حفظ - Save) للتحديث و(حفظ باسم - Save As) لتحديد اسم جديد أو موقع أو صيغة جديدة للملف.",
+                learnImg: "", 
+                applyTask: "أنشئي مستنداً جديداً واحفظيه باسم (مشروع_الصف_السادس) داخل مجلد المستندات على جهازك.",
+                challengeQuestion: "تريدين إنشاء نسخة جديدة معدلة من ملفك القديم مع الاحتفاظ بالملف القديم كما هو دون تغيير. أي خيار تختارين؟",
+                challengeOptions: [
+                    "خيار (حفظ Save)",
+                    "خيار (حفظ باسم Save As) مع كتابة اسم جديد للملف",
+                    "إغلاق البرنامج مباشرة"
+                ],
+                challengeCorrect: 1,
+                preTest: [
+                    { q: "الأمر المخصص لحفظ التعديلات على نفس الملف هو:", options: ["حفظ (Save)", "طباعة (Print)", "حذف (Delete)"], correct: 0 },
+                    { q: "إذا أغلقتِ البرنامج دون حفظ فإن البيانات التعديلية الأخيرة قد تضيع.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                postTest: [
+                    { q: "نستخدم (حفظ باسم - Save As) من أجل:", options: ["تغيير اسم الملف أو موقعه أو صيغته", "إغلاق الحاسب", "حذف الملف"], correct: 0 },
+                    { q: "اختصار الحفظ السريع في معظم البرامج باستخدام لوحة المفاتيح هو Ctrl + S.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                tryActivities: {
+                    type: "mcq",
+                    question: "اختاري الإجراء المناسب: لتخزين ملف لأول مرة على ذاكرة الجهاز نختار:",
+                    options: ["Save As (حفظ باسم)", "Exit (خروج)"],
+                    correct: 0
+                }
+            }
+        ];
+
+        /* ==========================================================================
+           حالة التطبيق المحلية والتخزين المؤقت للعمل عند انقطاع الشبكة
+           ========================================================================== */
+        let currentStudentData = null;
+        let currentStudentName = null;
+        let currentSkillId = null;
+        let currentStepId = null;
+        let currentQuizAnswers = [];
+        let teacherDashboardCache = [];
+
+        function showToast(msg, isError = false) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            if(isError) toast.style.background = 'var(--danger)';
+            toast.innerHTML = (isError ? '⚠️ ' : '✅ ') + msg;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        function createEmptyStudentModel(name, className) {
+            return {
+                id: null,
+                name: name,
+                class: className,
+                overall_status: "لم تبدأ",
+                progress_percent: 0,
+                current_skill_id: 1,
+                current_step: "pretest",
+                skills: {
+                    skill1: { preTest: null, postTest: null, currentStep: "pretest", status: "لم تبدأ", progress: 0 },
+                    skill2: { preTest: null, postTest: null, currentStep: "pretest", status: "لم تبدأ", progress: 0 },
+                    skill3: { preTest: null, postTest: null, currentStep: "pretest", status: "لم تبدأ", progress: 0 }
+                }
+            };
+        }
+
+        /* ==========================================================================
+           التنقل والشاشات
+           ========================================================================== */
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function updateHeaderNav() {
+            const navDiv = document.getElementById('userHeaderActions');
+            if (currentStudentName) {
+                navDiv.innerHTML = `<span style="margin-left:10px;">👧 ${currentStudentName}</span> <button class="nav-btn" onclick="logoutStudent()">تسجيل الخروج</button>`;
+            } else if (document.getElementById('screenTeacherDashboard').classList.contains('active')) {
+                navDiv.innerHTML = `<span style="margin-left:10px;">👩‍🏫 لوحة المعلمة</span> <button class="nav-btn" onclick="logoutTeacher()">تسجيل الخروج</button>`;
+            } else {
+                navDiv.innerHTML = '';
+            }
+        }
+
+        function showStudentLogin() {
+            document.getElementById('selectClass').value = "";
+            document.getElementById('selectStudentName').innerHTML = '<option value="">-- اختر الفصل أولاً --</option>';
+            showScreen('screenStudentLogin');
+        }
+
+        function onClassChange() {
+            const selectedClass = document.getElementById('selectClass').value;
+            const nameSelect = document.getElementById('selectStudentName');
+            nameSelect.innerHTML = '<option value="">-- اختر الاسم --</option>';
+
+            if (selectedClass && STUDENTS_DATABASE[selectedClass]) {
+                STUDENTS_DATABASE[selectedClass].forEach(name => {
+                    const opt = document.createElement('option');
+                    opt.value = name;
+                    opt.textContent = name;
+                    nameSelect.appendChild(opt);
+                });
+            }
+        }
+
+        /* ==========================================================================
+           ربط الطالبة وتنسيق البيانات مع Supabase
+           ========================================================================== */
+        async function loginStudent() {
+            const selectedClass = document.getElementById('selectClass').value;
+            const name = document.getElementById('selectStudentName').value;
+
+            if (!selectedClass || !name) {
+                alert("يرجى اختيار الفصل واسم الطالبة أولاً.");
+                return;
+            }
+
+            currentStudentName = name;
+            updateHeaderNav();
+
+            await fetchStudentDataFromSupabase(name, selectedClass);
+            renderStudentDashboard();
+            showScreen('screenStudentDashboard');
+        }
+
+        async function fetchStudentDataFromSupabase(name, className) {
+            let model = createEmptyStudentModel(name, className);
+
+            if (!supabaseClient) {
+                // التراجع للخيار المحلي عند عدم إعداد المفاتيح بعد
+                const local = localStorage.getItem(`student_${name}`);
+                currentStudentData = local ? JSON.parse(local) : model;
+                return;
+            }
+
+            try {
+                // 1. جلب الطالبة
+                let { data: studentRow, error } = await supabaseClient
+                    .from('students')
+                    .select('*')
+                    .eq('name', name)
+                    .single();
+
+                if (error && error.code !== 'PGRST116') throw error;
+
+                if (!studentRow) {
+                    // إنشاء الطالبة تلقائياً في السجل
+                    let { data: newStudent, error: insErr } = await supabaseClient
+                        .from('students')
+                        .insert([{ name: name, class_name: className }])
+                        .select()
+                        .single();
+                    if (insErr) throw insErr;
+                    studentRow = newStudent;
+                }
+
+                model.id = studentRow.id;
+                model.overall_status = studentRow.overall_status || "لم تبدأ";
+                model.progress_percent = studentRow.progress_percent || 0;
+
+                // 2. جلب نتائج المهارات
+                let { data: skillsRows, error: skErr } = await supabaseClient
+                    .from('skill_results')
+                    .select('*')
+                    .eq('student_id', studentRow.id);
+
+                if (skErr) throw skErr;
+
+                if (skillsRows) {
+                    skillsRows.forEach(sr => {
+                        const key = `skill${sr.skill_id}`;
+                        if (model.skills[key]) {
+                            model.skills[key].preTest = sr.pre_test_score;
+                            model.skills[key].postTest = sr.post_test_score;
+                            model.skills[key].status = sr.mastery_status || "لم تبدأ";
+                            model.skills[key].currentStep = sr.last_step || "pretest";
+                            model.skills[key].progress = sr.progress_percent || 0;
+                        }
+                    });
+                }
+
+                // 3. جلب آخر تقدم
+                let { data: progRow } = await supabaseClient
+                    .from('student_progress')
+                    .select('*')
+                    .eq('student_id', studentRow.id)
+                    .single();
+
+                if (progRow) {
+                    model.current_skill_id = progRow.current_skill_id || 1;
+                    model.current_step = progRow.current_step || "pretest";
+                }
+
+                currentStudentData = model;
+                localStorage.setItem(`student_${name}`, JSON.stringify(model));
+
+            } catch (err) {
+                console.error("خطأ الاتصال بـ Supabase:", err);
+                showToast("تعذر الاتصال المباشر بقاعدة البيانات، تم تحميل البيانات المحلية المؤقتة.", true);
+                const local = localStorage.getItem(`student_${name}`);
+                currentStudentData = local ? JSON.parse(local) : model;
+            }
+        }
+
+        async function syncCurrentDataToSupabase() {
+            if (!currentStudentData) return;
+
+            // حفظ محلي أولاً
+            localStorage.setItem(`student_${currentStudentName}`, JSON.stringify(currentStudentData));
+
+            if (!supabaseClient || !currentStudentData.id) return;
+
+            try {
+                // 1. تحديث الجدول الرئيسي للطالبة
+                await supabaseClient
+                    .from('students')
+                    .update({
+                        overall_status: currentStudentData.overall_status,
+                        progress_percent: calculateOverallProgress(currentStudentData),
+                        last_active: new Date().toISOString()
+                    })
+                    .eq('id', currentStudentData.id);
+
+                // 2. تحديث المهارة الحالية
+                if (currentSkillId) {
+                    const skNum = currentSkillId === 'skill1' ? 1 : currentSkillId === 'skill2' ? 2 : 3;
+                    const skState = currentStudentData.skills[currentSkillId];
+
+                    await supabaseClient
+                        .from('skill_results')
+                        .upsert({
+                            student_id: currentStudentData.id,
+                            skill_id: skNum,
+                            pre_test_score: skState.preTest,
+                            post_test_score: skState.postTest,
+                            mastery_status: skState.status,
+                            last_step: skState.currentStep,
+                            progress_percent: skState.progress || 0,
+                            updated_at: new Date().toISOString()
+                        }, { onConflict: 'student_id,skill_id' });
+                }
+
+                // 3. تحديث التقدم العام
+                await supabaseClient
+                    .from('student_progress')
+                    .upsert({
+                        student_id: currentStudentData.id,
+                        current_skill_id: currentSkillId ? (currentSkillId === 'skill1' ? 1 : currentSkillId === 'skill2' ? 2 : 3) : 1,
+                        current_step: currentStepId || "pretest",
+                        overall_progress_percent: calculateOverallProgress(currentStudentData),
+                        last_page: currentStepId || "main",
+                        updated_at: new Date().toISOString()
+                    }, { onConflict: 'student_id' });
+
+                showToast("تم حفظ تقدمك بنجاح في قاعدة البيانات");
+
+            } catch (err) {
+                console.error("فشل الحفظ المباشر بـ Supabase:", err);
+                showToast("تم الحفظ محلياً وسوف يتزامن مع قاعدة البيانات فور عودة الاتصال.", true);
+            }
+        }
+
+        function calculateOverallProgress(sData) {
+            let completed = 0;
+            Object.values(sData.skills).forEach(sk => {
+                if (sk.status === 'مكتملة' || sk.status === 'متقنة') completed++;
+            });
+            return Math.round((completed / 3) * 100);
+        }
+
+        function logoutStudent() {
+            currentStudentName = null;
+            currentStudentData = null;
+            currentSkillId = null;
+            currentStepId = null;
+            updateHeaderNav();
+            showScreen('screenRole');
+        }
+
+        function renderStudentDashboard() {
+            document.getElementById('studentWelcomeTitle').textContent = `مرحباً بكِ أيتها المبدعة: ${currentStudentData.name}`;
+            document.getElementById('studentWelcomeSub').textContent = `الفصل: ${currentStudentData.class} | استكملي مسار المهارات الثلاث`;
+
+            const listContainer = document.getElementById('skillsList');
+            listContainer.innerHTML = '';
+
+            SKILLS_DATA.forEach(skill => {
+                const sData = currentStudentData.skills[skill.id] || { status: 'لم تبدأ', progress: 0 };
+                let badgeClass = getStatusClass(sData.status);
+
+                const card = document.createElement('div');
+                card.className = "card skill-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="skill-header">
+                            <h3 style="color: var(--primary-1); font-size: 1.1rem;">${skill.title}</h3>
+                            <span class="skill-status ${badgeClass}">${sData.status}</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">
+                            القبلي: ${sData.preTest !== null ? sData.preTest + '%' : 'غير منفذ'} | 
+                            البعدي: ${sData.postTest !== null ? sData.postTest + '%' : 'غير منفذ'}
+                        </p>
+                    </div>
+                    <button class="btn" onclick="startSkill('${skill.id}')">
+                        ${sData.status === 'لم تبدأ' ? 'بدء المهارة 🚀' : 'متابعة التعلم 📖'}
+                    </button>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        /* ==========================================================================
+           تشغيل المهارة والمراحل
+           ========================================================================== */
+        function startSkill(skillId) {
+            currentSkillId = skillId;
+            const skillState = currentStudentData.skills[skillId];
+
+            currentStepId = skillState.currentStep || 'pretest';
+            
+            const skillInfo = SKILLS_DATA.find(s => s.id === skillId);
+            document.getElementById('runnerSkillTitle').textContent = skillInfo.title;
+
+            showScreen('screenSkillRunner');
+            renderStepNav();
+            loadStepContent(currentStepId);
+        }
+
+        function exitSkillRunner() {
+            renderStudentDashboard();
+            showScreen('screenStudentDashboard');
+        }
+
+        function renderStepNav() {
+            const skillState = currentStudentData.skills[currentSkillId];
+            const steps = ['pretest', 'learn', 'watch', 'try', 'apply', 'challenge', 'posttest', 'result'];
+            const navTabs = document.querySelectorAll('#stepsNav .step-tab');
+
+            navTabs.forEach((tab, index) => {
+                const stepKey = steps[index];
+                tab.classList.remove('active', 'disabled');
+
+                if (stepKey === currentStepId) {
+                    tab.classList.add('active');
+                }
+
+                if (stepKey !== 'pretest' && skillState.preTest === null) {
+                    tab.classList.add('disabled');
+                }
+            });
+        }
+
+        async function goToStep(stepId) {
+            const skillState = currentStudentData.skills[currentSkillId];
+
+            if (stepId !== 'pretest' && skillState.preTest === null) {
+                alert("يجب أداء الاختبار القبلي للمهارة أولاً!");
+                return;
+            }
+
+            currentStepId = stepId;
+            skillState.currentStep = stepId;
+
+            renderStepNav();
+            loadStepContent(stepId);
+            await syncCurrentDataToSupabase();
+        }
+
+        function loadStepContent(stepId) {
+            const container = document.getElementById('stepContent');
+            const skill = SKILLS_DATA.find(s => s.id === currentSkillId);
+            const skillState = currentStudentData.skills[currentSkillId];
+
+            container.innerHTML = '';
+            currentQuizAnswers = [];
+
+            if (stepId === 'pretest') {
+                if (skillState.preTest !== null) {
+                    container.innerHTML = `
+                        <div class="alert alert-info">
+                            لقد أديتِ الاختبار القبلي سابقاً. الدرجة: ${skillState.preTest}%
+                        </div>
+                        <button class="btn" onclick="goToStep('learn')">الانتقال لـ (أتعلم) ➔</button>
+                    `;
+                } else {
+                    renderQuiz(container, skill.preTest, "الاختبار القبلي للمهارة", async (score) => {
+                        skillState.preTest = score;
+                        if (skillState.status === 'لم تبدأ') skillState.status = 'قيد التدريب';
+                        updateStudentOverallStatus();
+                        await syncCurrentDataToSupabase();
+                        loadStepContent('pretest');
+                    });
+                }
+            } else if (stepId === 'learn') {
+                container.innerHTML = `
+                    <h4 style="color:var(--primary-1); margin-bottom:10px;">أتعلم المهارة</h4>
+                    <p style="font-size: 1.05rem; line-height: 1.7;">${skill.learnText}</p>
+                    ${skill.learnImg ? `<img src="${skill.learnImg}" class="skill-img-placeholder" alt="شرح المهارة">` : '<div class="skill-img-placeholder">يمكن إضافة صور توضيحية هنا بكل سهولة</div>'}
+                    <div style="margin-top:20px;">
+                        <button class="btn" onclick="goToStep('watch')">التالي: أشاهد ➔</button>
+                    </div>
+                `;
+            } else if (stepId === 'watch') {
+                container.innerHTML = `
+                    <h4 style="color:var(--primary-1); margin-bottom:10px;">أشاهد الشرح المرفق</h4>
+                    <p>شاهدي الفيديو التعليمي المخصص لهذه المهارة بتمعن:</p>
+                    <div class="video-container">
+                        <iframe src="${skill.youtubeUrl}" allowfullscreen></iframe>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <button class="btn" onclick="goToStep('try')">التالي: أجرب ➔</button>
+                    </div>
+                `;
+            } else if (stepId === 'try') {
+                const act = skill.tryActivities;
+                container.innerHTML = `
+                    <h4 style="color:var(--primary-1); margin-bottom:10px;">أجرب مهاراتي</h4>
+                    <p style="margin-bottom:15px; font-weight:bold;">${act.question}</p>
+                    <div id="tryOptions"></div>
+                    <div id="tryFeedback" style="margin-top:15px;"></div>
+                    <div style="margin-top:20px;">
+                        <button class="btn" onclick="goToStep('apply')">التالي: أطبق ➔</button>
+                    </div>
+                `;
+                const optDiv = document.getElementById('tryOptions');
+                act.options.forEach((opt, idx) => {
+                    const btn = document.createElement('div');
+                    btn.className = 'quiz-option';
+                    btn.textContent = opt;
+                    btn.onclick = () => {
+                        if (idx === act.correct) {
+                            document.getElementById('tryFeedback').innerHTML = `<div class="alert alert-success">إجابة ممتازة وصحيحة! 🎉</div>`;
+                        } else {
+                            document.getElementById('tryFeedback').innerHTML = `<div class="alert alert-warning">حاولي مرة أخرى بتركيز. 💡</div>`;
+                        }
+                    };
+                    optDiv.appendChild(btn);
+                });
+            } else if (stepId === 'apply') {
+                container.innerHTML = `
+                    <h4 style="color:var(--primary-1); margin-bottom:10px;">أطبق المهارة عملاً</h4>
+                    <p style="font-size:1.05rem; line-height:1.6; margin-bottom:20px;">${skill.applyTask}</p>
+                    <div class="alert alert-info">قومي بتطبيق المطلوب ثم اضغطي زر الاستمرار.</div>
+                    <button class="btn" onclick="goToStep('challenge')">تم التطبيق! الانتقال لـ (أتحدى تفكيري) ➔</button>
+                `;
+            } else if (stepId === 'challenge') {
+                container.innerHTML = `
+                    <h4 style="color:var(--primary-1); margin-bottom:10px;">أتحدى تفكيري 🤔</h4>
+                    <p style="font-size:1.05rem; line-height:1.6; margin-bottom:15px;">${skill.challengeQuestion}</p>
+                    <div id="challengeOptions"></div>
+                    <div id="challengeFeedback" style="margin-top:15px;"></div>
+                    <div style="margin-top:20px;">
+                        <button class="btn" onclick="goToStep('posttest')">التالي: أتحقق من إتقاني ➔</button>
+                    </div>
+                `;
+                const optDiv = document.getElementById('challengeOptions');
+                skill.challengeOptions.forEach((opt, idx) => {
+                    const btn = document.createElement('div');
+                    btn.className = 'quiz-option';
+                    btn.textContent = opt;
+                    btn.onclick = () => {
+                        if (idx === skill.challengeCorrect) {
+                            document.getElementById('challengeFeedback').innerHTML = `<div class="alert alert-success">تحليل ممتاز وتفكير متميز! 🌟</div>`;
+                        } else {
+                            document.getElementById('challengeFeedback').innerHTML = `<div class="alert alert-warning">فكر مجدداً في المفهوم واختاري الأصح. 💭</div>`;
+                        }
+                    };
+                    optDiv.appendChild(btn);
+                });
+            } else if (stepId === 'posttest') {
+                if (skillState.postTest !== null) {
+                    container.innerHTML = `
+                        <div class="alert alert-info">
+                            لقد أديتِ الاختبار البعدي سابقاً. الدرجة: ${skillState.postTest}%
+                        </div>
+                        <button class="btn" onclick="goToStep('result')">عرض النتيجة النهائية ➔</button>
+                    `;
+                } else {
+                    renderQuiz(container, skill.postTest, "أتحقق من إتقاني (الاختبار البعدي)", async (score) => {
+                        skillState.postTest = score;
+                        
+                        if (score >= 80) {
+                            skillState.status = 'متقنة';
+                        } else if (score >= 50) {
+                            skillState.status = 'مكتملة';
+                        } else {
+                            skillState.status = 'تحتاج تدريبًا إضافيًا';
+                        }
+
+                        updateStudentOverallStatus();
+                        await syncCurrentDataToSupabase();
+                        goToStep('result');
+                    });
+                }
+            } else if (stepId === 'result') {
+                const pre = skillState.preTest || 0;
+                const post = skillState.postTest || 0;
+                const diff = post - pre;
+                
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 20px 0;">
+                        <h3 style="color:var(--primary-1); margin-bottom:15px;">نتيجة ${skill.title}</h3>
+                        
+                        <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:20px;">
+                            <div class="stat-card" style="min-width:150px;">
+                                <h4>الاختبار القبلي</h4>
+                                <div class="value">${pre}%</div>
+                            </div>
+                            <div class="stat-card" style="min-width:150px; border-color:var(--success);">
+                                <h4>الاختبار البعدي</h4>
+                                <div class="value">${post}%</div>
+                            </div>
+                            <div class="stat-card" style="min-width:150px; border-color:var(--accent-1);">
+                                <h4>نسبة التحسن</h4>
+                                <div class="value" style="color: ${diff >= 0 ? 'var(--success)' : 'var(--danger)'};">
+                                    ${diff > 0 ? '+' + diff : diff}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success" style="display:inline-block;">
+                            حالة المهارة: <strong>${skillState.status}</strong>
+                        </div>
+
+                        <div style="margin-top:25px;">
+                            <button class="btn" onclick="exitSkillRunner()">العودة إلى قائمة المهارات</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function renderQuiz(container, questions, title, onComplete) {
+            container.innerHTML = `<h4 style="color:var(--primary-1); margin-bottom:15px;">${title}</h4>`;
+            
+            questions.forEach((q, qIndex) => {
+                const qBox = document.createElement('div');
+                qBox.style.marginBottom = "20px";
+                qBox.innerHTML = `<p style="font-weight:bold; margin-bottom:8px;">س${qIndex + 1}: ${q.q}</p>`;
+
+                q.options.forEach((opt, oIndex) => {
+                    const optBtn = document.createElement('div');
+                    optBtn.className = `quiz-option opt-q-${qIndex}`;
+                    optBtn.textContent = opt;
+                    optBtn.onclick = () => {
+                        document.querySelectorAll(`.opt-q-${qIndex}`).forEach(el => el.classList.remove('selected'));
+                        optBtn.classList.add('selected');
+                        currentQuizAnswers[qIndex] = oIndex;
+                    };
+                    qBox.appendChild(optBtn);
+                });
+
+                container.appendChild(qBox);
+            });
+
+            const submitBtn = document.createElement('button');
+            submitBtn.className = "btn";
+            submitBtn.style.marginTop = "15px";
+            submitBtn.textContent = "تسليم الاختبار";
+            submitBtn.onclick = () => {
+                if (currentQuizAnswers.length < questions.length || currentQuizAnswers.includes(undefined)) {
+                    alert("يرجى الإجابة عن كافة الأسئلة أولاً!");
+                    return;
+                }
+                
+                let correctCount = 0;
+                questions.forEach((q, idx) => {
+                    if (currentQuizAnswers[idx] === q.correct) {
+                        correctCount++;
+                    }
+                });
+
+                const score = Math.round((correctCount / questions.length) * 100);
+                onComplete(score);
+            };
+
+            container.appendChild(submitBtn);
+        }
+
+        function updateStudentOverallStatus() {
+            const sk = currentStudentData.skills;
+            const statuses = [sk.skill1.status, sk.skill2.status, sk.skill3.status];
+
+            if (statuses.every(s => s === 'لم تبدأ')) {
+                currentStudentData.overall_status = 'لم تبدأ';
+            } else if (statuses.every(s => s === 'متقنة')) {
+                currentStudentData.overall_status = 'متقنة';
+            } else if (statuses.every(s => s === 'مكتملة' || s === 'متقنة')) {
+                currentStudentData.overall_status = 'مكتملة';
+            } else if (statuses.some(s => s === 'تحتاج تدريبًا إضافيًا')) {
+                currentStudentData.overall_status = 'تحتاج تدريبًا إضافيًا';
+            } else {
+                currentStudentData.overall_status = 'قيد التدريب';
+            }
+        }
+
+        /* ==========================================================================
+           لوحة التحكم الخاصة بالمعلمة - الربط الحقيقي المباشر بـ Supabase
+           ========================================================================== */
+        function showTeacherLogin() {
+            document.getElementById('teacherPassword').value = '';
+            document.getElementById('teacherLoginError').style.display = 'none';
+            showScreen('screenTeacherLogin');
+        }
+
+        async function loginTeacher() {
+            const pass = document.getElementById('teacherPassword').value;
+            // يمكنك تغيير كلمة المرور هنا إن أردت (الافتراضية: 123456)
+            if (pass === "123456") {
+                updateHeaderNav();
+                await fetchTeacherDataFromSupabase();
+                showScreen('screenTeacherDashboard');
+            } else {
+                document.getElementById('teacherLoginError').style.display = 'block';
+            }
+        }
+
+        function logoutTeacher() {
+            updateHeaderNav();
+            showScreen('screenRole');
+        }
+
+        async function fetchTeacherDataFromSupabase() {
+            if (!supabaseClient) {
+                // تجميع بيانات محلية إذا لم يُربط المفتاح بعد
+                teacherDashboardCache = [];
+                Object.keys(STUDENTS_DATABASE).forEach(cName => {
+                    STUDENTS_DATABASE[cName].forEach(sName => {
+                        const local = localStorage.getItem(`student_${sName}`);
+                        if (local) {
+                            teacherDashboardCache.push(JSON.parse(local));
+                        } else {
+                            teacherDashboardCache.push(createEmptyStudentModel(sName, cName));
+                        }
+                    });
+                });
+                renderTeacherDashboardUI();
+                return;
+            }
+
+            try {
+                let { data: students, error } = await supabaseClient
+                    .from('students')
+                    .select(`
+                        id,
+                        name,
+                        class_name,
+                        overall_status,
+                        progress_percent,
+                        skill_results (
+                            skill_id,
+                            pre_test_score,
+                            post_test_score,
+                            mastery_status,
+                            last_step,
+                            progress_percent
+                        )
+                    `);
+
+                if (error) throw error;
+
+                teacherDashboardCache = Object.keys(STUDENTS_DATABASE).flatMap(cName => {
+                    return STUDENTS_DATABASE[cName].map(sName => {
+                        let dbStudent = students ? students.find(s => s.name === sName) : null;
+                        let model = createEmptyStudentModel(sName, cName);
+
+                        if (dbStudent) {
+                            model.id = dbStudent.id;
+                            model.overall_status = dbStudent.overall_status || "لم تبدأ";
+                            model.progress_percent = dbStudent.progress_percent || 0;
+
+                            if (dbStudent.skill_results) {
+                                dbStudent.skill_results.forEach(sr => {
+                                    const skKey = `skill${sr.skill_id}`;
+                                    if (model.skills[skKey]) {
+                                        model.skills[skKey].preTest = sr.pre_test_score;
+                                        model.skills[skKey].postTest = sr.post_test_score;
+                                        model.skills[skKey].status = sr.mastery_status || "لم تبدأ";
+                                        model.skills[skKey].currentStep = sr.last_step || "pretest";
+                                        model.skills[skKey].progress = sr.progress_percent || 0;
+                                    }
+                                });
+                            }
+                        }
+                        return model;
+                    });
+                });
+
+                renderTeacherDashboardUI();
+
+            } catch (err) {
+                console.error("خطأ جلب بيانات المعلمة من Supabase:", err);
+                showToast("تعذر جلب البيانات المباشرة، جاري عرض آخر بيانات مخزنة.", true);
+            }
+        }
+
+        function renderTeacherDashboardUI() {
+            updateTeacherStats();
+            renderTeacherTable();
+        }
+
+        function updateTeacherStats() {
+            document.getElementById('statTotal').textContent = teacherDashboardCache.length;
+
+            let classA = 0, classB = 0, classC = 0;
+            let notStarted = 0, inProgress = 0, completed = 0, mastered = 0, remedy = 0;
+
+            teacherDashboardCache.forEach(s => {
+                if (s.class === "سادس أ") classA++;
+                if (s.class === "سادس ب") classB++;
+                if (s.class === "سادس ج") classC++;
+
+                if (s.overall_status === 'لم تبدأ') notStarted++;
+                else if (s.overall_status === 'قيد التدريب') inProgress++;
+                else if (s.overall_status === 'مكتملة') completed++;
+                else if (s.overall_status === 'متقنة') mastered++;
+                else if (s.overall_status === 'تحتاج تدريبًا إضافيًا') remedy++;
+            });
+
+            document.getElementById('statClassA').textContent = classA;
+            document.getElementById('statClassB').textContent = classB;
+            document.getElementById('statClassC').textContent = classC;
+
+            document.getElementById('statNotStarted').textContent = notStarted;
+            document.getElementById('statInProgress').textContent = inProgress;
+            document.getElementById('statCompleted').textContent = completed;
+            document.getElementById('statMastered').textContent = mastered;
+            document.getElementById('statRemedy').textContent = remedy;
+        }
+
+        function renderTeacherTable() {
+            const tbody = document.getElementById('teacherTableBody');
+            const searchVal = document.getElementById('teacherSearch').value.trim().toLowerCase();
+            const classFilter = document.getElementById('teacherClassFilter').value;
+            const statusFilter = document.getElementById('teacherStatusFilter').value;
+
+            tbody.innerHTML = '';
+
+            teacherDashboardCache.forEach(s => {
+                if (searchVal && !s.name.toLowerCase().includes(searchVal)) return;
+                if (classFilter && s.class !== classFilter) return;
+                if (statusFilter && s.overall_status !== statusFilter) return;
+
+                const progressPercent = calculateOverallProgress(s);
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${s.name}</strong></td>
+                    <td>${s.class}</td>
+                    <td>
+                        <div style="background:#e9ecef; border-radius:10px; height:12px; width:70px; overflow:hidden; display:inline-block; vertical-align:middle;">
+                            <div style="background:var(--accent-1); width:${progressPercent}%; height:100%;"></div>
+                        </div>
+                        <span style="font-size:0.8rem; margin-right:5px;">${progressPercent}%</span>
+                    </td>
+                    <td>
+                        <small>ق: ${s.skills.skill1.preTest ?? '-'}</small> | 
+                        <small>ب: ${s.skills.skill1.postTest ?? '-'}</small><br>
+                        <span class="skill-status ${getStatusClass(s.skills.skill1.status)}">${s.skills.skill1.status}</span>
+                    </td>
+                    <td>
+                        <small>ق: ${s.skills.skill2.preTest ?? '-'}</small> | 
+                        <small>ب: ${s.skills.skill2.postTest ?? '-'}</small><br>
+                        <span class="skill-status ${getStatusClass(s.skills.skill2.status)}">${s.skills.skill2.status}</span>
+                    </td>
+                    <td>
+                        <small>ق: ${s.skills.skill3.preTest ?? '-'}</small> | 
+                        <small>ب: ${s.skills.skill3.postTest ?? '-'}</small><br>
+                        <span class="skill-status ${getStatusClass(s.skills.skill3.status)}">${s.skills.skill3.status}</span>
+                    </td>
+                    <td><span class="skill-status ${getStatusClass(s.overall_status)}">${s.overall_status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline" onclick="viewStudentDetails('${s.name}', '${s.class}')">التفاصيل</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function getStatusClass(status) {
+            if (status === "لم تبدأ") return "status-not-started";
+            if (status === "قيد التدريب") return "status-in-progress";
+            if (status === "مكتملة") return "status-completed";
+            if (status === "متقنة") return "status-mastered";
+            if (status === "تحتاج تدريبًا إضافيًا") return "status-needs-remedy";
+            return "";
+        }
+
+        async function viewStudentDetails(studentName, className) {
+            currentStudentName = studentName;
+            await fetchStudentDataFromSupabase(studentName, className);
+            renderStudentDashboard();
+            showScreen('screenStudentDashboard');
+        }
+
+        /* ==========================================================================
+           تصدير Excel قادم مباشرة من بيانات Supabase الحقيقية
+           ========================================================================== */
+        function exportToExcel() {
+            const dataToExport = [];
+
+            teacherDashboardCache.forEach(s => {
+                const diff1 = (s.skills.skill1.postTest !== null && s.skills.skill1.preTest !== null) ? (s.skills.skill1.postTest - s.skills.skill1.preTest) : '-';
+                const diff2 = (s.skills.skill2.postTest !== null && s.skills.skill2.preTest !== null) ? (s.skills.skill2.postTest - s.skills.skill2.preTest) : '-';
+                const diff3 = (s.skills.skill3.postTest !== null && s.skills.skill3.preTest !== null) ? (s.skills.skill3.postTest - s.skills.skill3.preTest) : '-';
+
+                dataToExport.push({
+                    "اسم الطالبة": s.name,
+                    "الفصل": s.class,
+                    "الأشكال المسطحة (قبلي)": s.skills.skill1.preTest ?? 'غير منفذ',
+                    "الأشكال المسطحة (بعدي)": s.skills.skill1.postTest ?? 'غير منفذ',
+                    "الأشكال المسطحة (نسبة التحسن)": diff1,
+                    "حالة مهارة الأشكال المسطحة": s.skills.skill1.status,
+                    "الملكية الفكرية (قبلي)": s.skills.skill2.preTest ?? 'غير منفذ',
+                    "الملكية الفكرية (بعدي)": s.skills.skill2.postTest ?? 'غير منفذ',
+                    "الملكية الفكرية (نسبة التحسن)": diff2,
+                    "حالة مهارة الملكية الفكرية": s.skills.skill2.status,
+                    "حفظ الملفات (قبلي)": s.skills.skill3.preTest ?? 'غير منفذ',
+                    "حفظ الملفات (بعدي)": s.skills.skill3.postTest ?? 'غير منفذ',
+                    "حفظ الملفات (نسبة التحسن)": diff3,
+                    "حالة مهارة حفظ الملفات": s.skills.skill3.status,
+                    "الحالة العامة للطالبة": s.overall_status,
+                    "نسبة الإنجاز الكلية": calculateOverallProgress(s) + '%'
+                });
+            });
+
+            const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "نتائج_Supabase_الصف_السادس");
+
+            XLSX.writeFile(workbook, "تقرير_نتائج_أتقن_مهارتي_Supabase.xlsx");
+        }
+    </script>
+</body>
+</html>
